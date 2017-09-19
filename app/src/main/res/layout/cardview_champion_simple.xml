@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:layout_margin="5dp"
+
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <android.support.constraint.Guideline
+            android:id="@+id/left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+
+        <ImageView
+            android:id="@+id/image_icon"
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lol_default_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_champ_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:fontFamily="sans-serif"
+            android:textColor="#333"
+            android:textSize="18sp"
+            android:paddingLeft="8dp"
+            app:layout_constraintLeft_toRightOf="@+id/image_icon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Paris" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/image_icon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_champ_name">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <ImageView
+                android:id="@+id/image_difficulty"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/book_icon"
+                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/text_difficulty"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_difficulty"
+                app:layout_constraintLeft_toRightOf="@+id/image_difficulty"
+                app:layout_constraintTop_toTopOf="@+id/image_difficulty"
+                app:layout_constraintRight_toLeftOf="@+id/guideline"
+                tools:text="10" />
+
+            <ImageView
+                android:id="@+id/image_attack"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/sword_icon"
+                app:layout_constraintLeft_toLeftOf="@+id/image_difficulty"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/text_attack"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_attack"
+                app:layout_constraintLeft_toRightOf="@+id/image_attack"
+                app:layout_constraintTop_toTopOf="@+id/image_attack"
+                app:layout_constraintRight_toLeftOf="@+id/guideline"
+                tools:text="10" />
+
+            <ImageView
+                android:id="@+id/image_magic"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/magic_icon"
+                app:layout_constraintLeft_toRightOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/image_difficulty" />
+
+            <TextView
+                android:id="@+id/text_magic"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_magic"
+                app:layout_constraintLeft_toRightOf="@+id/image_magic"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_magic"
+                tools:text="10" />
+
+            <ImageView
+                android:id="@+id/image_defense"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/shield_icon"
+                app:layout_constraintLeft_toLeftOf="@+id/image_magic"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/text_defense"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_defense"
+                app:layout_constraintLeft_toRightOf="@+id/image_defense"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_defense"
+                tools:text="10" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
