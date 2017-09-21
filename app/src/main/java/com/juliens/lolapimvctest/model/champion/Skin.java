@@ -4,7 +4,9 @@ package com.juliens.lolapimvctest.model.champion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Skin {
+import java.io.Serializable;
+
+public class Skin implements Serializable{
 
     @SerializedName("num")
     @Expose

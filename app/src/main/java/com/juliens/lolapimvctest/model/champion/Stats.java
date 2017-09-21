@@ -4,7 +4,9 @@ package com.juliens.lolapimvctest.model.champion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Stats {
+import java.io.Serializable;
+
+public class Stats implements Serializable{
 
     @SerializedName("armorperlevel")
     @Expose
@@ -14,7 +16,7 @@ public class Stats {
     private Double attackdamage;
     @SerializedName("mpperlevel")
     @Expose
-    private Integer mpperlevel;
+    private Double mpperlevel;
     @SerializedName("attackspeedoffset")
     @Expose
     private Double attackspeedoffset;
@@ -32,13 +34,13 @@ public class Stats {
     private Double hpregenperlevel;
     @SerializedName("attackspeedperlevel")
     @Expose
-    private Integer attackspeedperlevel;
+    private Double attackspeedperlevel;
     @SerializedName("attackrange")
     @Expose
-    private Integer attackrange;
+    private Double attackrange;
     @SerializedName("movespeed")
     @Expose
-    private Integer movespeed;
+    private Double movespeed;
     @SerializedName("attackdamageperlevel")
     @Expose
     private Double attackdamageperlevel;
@@ -47,13 +49,13 @@ public class Stats {
     private Double mpregenperlevel;
     @SerializedName("critperlevel")
     @Expose
-    private Integer critperlevel;
+    private Double critperlevel;
     @SerializedName("spellblockperlevel")
     @Expose
     private Double spellblockperlevel;
     @SerializedName("crit")
     @Expose
-    private Integer crit;
+    private Double crit;
     @SerializedName("mpregen")
     @Expose
     private Double mpregen;
@@ -65,7 +67,7 @@ public class Stats {
     private Double hpregen;
     @SerializedName("hpperlevel")
     @Expose
-    private Integer hpperlevel;
+    private Double hpperlevel;
 
     public Double getArmorperlevel() {
         return armorperlevel;
@@ -83,11 +85,11 @@ public class Stats {
         this.attackdamage = attackdamage;
     }
 
-    public Integer getMpperlevel() {
+    public Double getMpperlevel() {
         return mpperlevel;
     }
 
-    public void setMpperlevel(Integer mpperlevel) {
+    public void setMpperlevel(Double mpperlevel) {
         this.mpperlevel = mpperlevel;
     }
 
@@ -131,27 +133,27 @@ public class Stats {
         this.hpregenperlevel = hpregenperlevel;
     }
 
-    public Integer getAttackspeedperlevel() {
+    public Double getAttackspeedperlevel() {
         return attackspeedperlevel;
     }
 
-    public void setAttackspeedperlevel(Integer attackspeedperlevel) {
+    public void setAttackspeedperlevel(Double attackspeedperlevel) {
         this.attackspeedperlevel = attackspeedperlevel;
     }
 
-    public Integer getAttackrange() {
+    public Double getAttackrange() {
         return attackrange;
     }
 
-    public void setAttackrange(Integer attackrange) {
+    public void setAttackrange(Double attackrange) {
         this.attackrange = attackrange;
     }
 
-    public Integer getMovespeed() {
+    public Double getMovespeed() {
         return movespeed;
     }
 
-    public void setMovespeed(Integer movespeed) {
+    public void setMovespeed(Double movespeed) {
         this.movespeed = movespeed;
     }
 
@@ -171,11 +173,11 @@ public class Stats {
         this.mpregenperlevel = mpregenperlevel;
     }
 
-    public Integer getCritperlevel() {
+    public Double getCritperlevel() {
         return critperlevel;
     }
 
-    public void setCritperlevel(Integer critperlevel) {
+    public void setCritperlevel(Double critperlevel) {
         this.critperlevel = critperlevel;
     }
 
@@ -187,11 +189,11 @@ public class Stats {
         this.spellblockperlevel = spellblockperlevel;
     }
 
-    public Integer getCrit() {
+    public Double getCrit() {
         return crit;
     }
 
-    public void setCrit(Integer crit) {
+    public void setCrit(Double crit) {
         this.crit = crit;
     }
 
@@ -219,11 +221,11 @@ public class Stats {
         this.hpregen = hpregen;
     }
 
-    public Integer getHpperlevel() {
+    public Double getHpperlevel() {
         return hpperlevel;
     }
 
-    public void setHpperlevel(Integer hpperlevel) {
+    public void setHpperlevel(Double hpperlevel) {
         this.hpperlevel = hpperlevel;
     }
 }

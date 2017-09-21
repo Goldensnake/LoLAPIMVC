@@ -4,7 +4,9 @@ package com.juliens.lolapimvctest.model.champion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Passive {
+import java.io.Serializable;
+
+public class Passive implements Serializable{
 
     @SerializedName("image")
     @Expose
