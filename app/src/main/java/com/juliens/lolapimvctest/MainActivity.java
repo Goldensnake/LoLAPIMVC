@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity{
 
         RxBus.listen().subscribe(o -> {
             if (o instanceof SelectedChampion){
-                showChampionData(((SelectedChampion) o).getChampionData().getName());
+                showChampionData(((SelectedChampion) o).getChampionData().getId());
             }
         });
     }
@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //TODO wait click in recycler view
-    public void showChampionData(String championName){
-        ChampionQuery.getInstance().getChampion(AndroidUtil.getLocale(this),championName)
+    public void showChampionData(String championId){
+        ChampionQuery.getInstance().getChampion(AndroidUtil.getLocale(this),championId)
                 .subscribe(this::receiveChampionData,this::receiveError);
     }
 
@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity{
 
     private void receiveChampionData(ChampionsList championsList){
         Log.i("TOTOOOOOO", "receive champ data: "+championsList.getData().entrySet().iterator().next().getValue().getName());
-        /*Bundle bundle = new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putParcelable(CHAMPION_DATA, championsList.getData().entrySet().iterator().next().getValue());
         championListFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLayout,championFragment)
-                .commit();*/
+                .commit();
     }
 
     private void receiveError(Throwable error){

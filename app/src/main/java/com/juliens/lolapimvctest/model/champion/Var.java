@@ -15,10 +15,8 @@ public class Var implements Parcelable
     private String link;
     @SerializedName("coeff")
     @Expose
-    private Double coeff;
-    /*@SerializedName("coeff")
-    @Expose
-    private List<Double> coeff;*/
+    private Object coeff;
+
     @SerializedName("key")
     @Expose
     private String key;
@@ -31,7 +29,7 @@ public class Var implements Parcelable
         public Var createFromParcel(Parcel in) {
             Var instance = new Var();
             instance.link = ((String) in.readValue((String.class.getClassLoader())));
-            instance.coeff = ((Double) in.readValue((Double.class.getClassLoader())));
+            instance.coeff = (in.readValue((Object.class.getClassLoader())));
             instance.key = ((String) in.readValue((String.class.getClassLoader())));
             return instance;
         }
@@ -51,11 +49,11 @@ public class Var implements Parcelable
         this.link = link;
     }
 
-    public Double getCoeff() {
+    public Object getCoeff() {
         return coeff;
     }
 
-    public void setCoeff(Double coeff) {
+    public void setCoeff(Object coeff) {
         this.coeff = coeff;
     }
 
