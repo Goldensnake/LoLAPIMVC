@@ -1,55 +1,90 @@
 
 package com.juliens.lolapimvctest.model.champion;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+public class Info implements Parcelable
+{
 
-public class Info implements Serializable{
-
-    @SerializedName("difficulty")
-    @Expose
-    private int difficulty;
     @SerializedName("attack")
     @Expose
-    private int attack;
+    private Integer attack;
     @SerializedName("defense")
     @Expose
-    private int defense;
+    private Integer defense;
     @SerializedName("magic")
     @Expose
-    private int magic;
+    private Integer magic;
+    @SerializedName("difficulty")
+    @Expose
+    private Integer difficulty;
+    public final static Parcelable.Creator<Info> CREATOR = new Creator<Info>() {
 
-    public int getDifficulty() {
-        return difficulty;
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Info createFromParcel(Parcel in) {
+            Info instance = new Info();
+            instance.attack = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.defense = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.magic = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            instance.difficulty = ((Integer) in.readValue((Integer.class.getClassLoader())));
+            return instance;
+        }
+
+        public Info[] newArray(int size) {
+            return (new Info[size]);
+        }
+
     }
+            ;
 
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public int getAttack() {
+    public Integer getAttack() {
         return attack;
     }
 
-    public void setAttack(int attack) {
+    public void setAttack(Integer attack) {
         this.attack = attack;
     }
 
-    public int getDefense() {
+    public Integer getDefense() {
         return defense;
     }
 
-    public void setDefense(int defense) {
+    public void setDefense(Integer defense) {
         this.defense = defense;
     }
 
-    public int getMagic() {
+    public Integer getMagic() {
         return magic;
     }
 
-    public void setMagic(int magic) {
+    public void setMagic(Integer magic) {
         this.magic = magic;
     }
+
+    public Integer getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Integer difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(attack);
+        dest.writeValue(defense);
+        dest.writeValue(magic);
+        dest.writeValue(difficulty);
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
 }

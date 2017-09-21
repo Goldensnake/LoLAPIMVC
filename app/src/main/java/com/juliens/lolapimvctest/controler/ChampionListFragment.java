@@ -25,7 +25,7 @@ public class ChampionListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        championsList = (ChampionsList) this.getArguments().getSerializable(MainActivity.CHAMPIONS_LIST);
+        championsList = this.getArguments().getParcelable(MainActivity.CHAMPIONS_LIST);
         return inflater.inflate(R.layout.fragment_champions_list, container, false);
     }
 

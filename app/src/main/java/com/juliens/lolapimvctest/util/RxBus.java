@@ -21,13 +21,13 @@ import io.reactivex.subjects.PublishSubject;
  * });
  */
 public final class RxBus {
-    private final PublishSubject<Object> bus = PublishSubject.create();
+    private static final PublishSubject<Object> bus = PublishSubject.create();
 
-    public void send(final Object event) {
+    public static void send(final Object event) {
         bus.onNext(event);
     }
 
-    public Observable<Object> listen() {
+    public static Observable<Object> listen() {
         return bus;
     }
 

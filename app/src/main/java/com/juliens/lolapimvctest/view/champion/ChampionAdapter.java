@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.juliens.lolapimvctest.R;
+import com.juliens.lolapimvctest.model.bus.SelectedChampion;
 import com.juliens.lolapimvctest.model.champion.ChampionData;
+import com.juliens.lolapimvctest.util.RxBus;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -47,7 +49,7 @@ public class ChampionAdapter extends RecyclerView.Adapter<ChampionViewHolder> {
         holder.textViewChampAttack.setText(String.valueOf(data.getInfo().getAttack()));
         holder.textViewChampMagic.setText(String.valueOf(data.getInfo().getMagic()));
         holder.textViewChampDefense.setText(String.valueOf(data.getInfo().getDefense()));
-        holder.itemView.setOnClickListener(view -> onClickChampName.onNext(data.getName()));
+        holder.itemView.setOnClickListener(view -> RxBus.send(new SelectedChampion(data)));
     }
 
     @Override

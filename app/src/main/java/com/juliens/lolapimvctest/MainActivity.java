@@ -13,9 +13,11 @@ import android.widget.Toast;
 
 import com.juliens.lolapimvctest.controler.ChampionFragment;
 import com.juliens.lolapimvctest.controler.ChampionListFragment;
+import com.juliens.lolapimvctest.model.bus.SelectedChampion;
 import com.juliens.lolapimvctest.model.champion.ChampionsList;
 import com.juliens.lolapimvctest.service.ChampionQuery;
 import com.juliens.lolapimvctest.util.AndroidUtil;
+import com.juliens.lolapimvctest.util.RxBus;
 
 public class MainActivity extends AppCompatActivity{
     private final Fragment championListFragment = new ChampionListFragment();
@@ -29,6 +31,12 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         ChampionQuery.getInstance().getAllChampion(AndroidUtil.getLocale(this))
                 .subscribe(this::receiveChampionsList, this::receiveError);
+
+        RxBus.listen().subscribe(o -> {
+            if (o instanceof SelectedChampion){
+                showChampionData(((SelectedChampion) o).getChampionData().getName());
+            }
+        });
     }
 
     @Override
@@ -52,28 +60,25 @@ public class MainActivity extends AppCompatActivity{
     //Call reception//
     private void receiveChampionsList(ChampionsList championsList){
         Bundle bundle = new Bundle();
-        bundle.putSerializable(CHAMPIONS_LIST, championsList );
+        bundle.putParcelable(CHAMPIONS_LIST, championsList );
         championListFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLayout,championListFragment)
                 .commit();
-
     }
 
     private void receiveChampionData(ChampionsList championsList){
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(CHAMPION_DATA, championsList.getData().entrySet().iterator().next().getValue());
+        Log.i("TOTOOOOOO", "receive champ data: "+championsList.getData().entrySet().iterator().next().getValue().getName());
+        /*Bundle bundle = new Bundle();
+        bundle.putParcelable(CHAMPION_DATA, championsList.getData().entrySet().iterator().next().getValue());
         championListFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLayout,championFragment)
-                .commit();
+                .commit();*/
     }
 
     private void receiveError(Throwable error){
         Log.e("error network", error.toString());
         Toast.makeText(this,"network error: "+error.getMessage(), Toast.LENGTH_LONG).show();
     }
-
-
-
 }

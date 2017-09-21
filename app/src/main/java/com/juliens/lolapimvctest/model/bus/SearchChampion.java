@@ -10,4 +10,8 @@ public class SearchChampion {
     public SearchChampion(String search) {
         this.search = search;
     }
+
+    public String getSearch() {
+        return search;
+    }
 }
