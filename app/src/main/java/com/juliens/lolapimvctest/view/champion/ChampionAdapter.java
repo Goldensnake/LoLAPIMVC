@@ -8,24 +8,21 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.juliens.lolapimvctest.R;
-import com.juliens.lolapimvctest.model.bus.SelectedChampion;
+import com.juliens.lolapimvctest.model.bus.SelectedChampionEvent;
 import com.juliens.lolapimvctest.model.champion.ChampionData;
-import com.juliens.lolapimvctest.util.RxBus;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-
-import io.reactivex.Observable;
-import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by juliens on 15/09/2017.
  */
 
 public class ChampionAdapter extends RecyclerView.Adapter<ChampionViewHolder> {
-    private final LinkedHashMap<String, ChampionData> championsData;
+    private LinkedHashMap<String, ChampionData> championsData;
     private Context context;
-    private final PublishSubject<String> onClickChampName = PublishSubject.create();
 
     public ChampionAdapter(LinkedHashMap<String, ChampionData> championsData) {
         this.championsData = championsData;
@@ -49,7 +46,7 @@ public class ChampionAdapter extends RecyclerView.Adapter<ChampionViewHolder> {
         holder.textViewChampAttack.setText(String.valueOf(data.getInfo().getAttack()));
         holder.textViewChampMagic.setText(String.valueOf(data.getInfo().getMagic()));
         holder.textViewChampDefense.setText(String.valueOf(data.getInfo().getDefense()));
-        holder.itemView.setOnClickListener(view -> RxBus.send(new SelectedChampion(data)));
+        holder.itemView.setOnClickListener(view -> EventBus.getDefault().post(new SelectedChampionEvent(data)));
     }
 
     @Override
@@ -57,7 +54,9 @@ public class ChampionAdapter extends RecyclerView.Adapter<ChampionViewHolder> {
         return championsData.size();
     }
 
-    public Observable<String> getChampNameSelected(){
-        return onClickChampName.hide();
+    public void changeData(LinkedHashMap<String, ChampionData> championsListData){
+        championsData.clear();
+        championsData.putAll(championsListData);
+        notifyDataSetChanged();
     }
 }

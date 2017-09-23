@@ -8,12 +8,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.juliens.lolapimvctest.MainActivity;
 import com.juliens.lolapimvctest.R;
+import com.juliens.lolapimvctest.model.bus.SearchChampionEvent;
+import com.juliens.lolapimvctest.model.champion.ChampionData;
 import com.juliens.lolapimvctest.model.champion.ChampionsList;
 import com.juliens.lolapimvctest.view.champion.ChampionAdapter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.LinkedHashMap;
 
 /**
  * Created by juliens on 14/09/2017.
@@ -21,6 +27,7 @@ import com.juliens.lolapimvctest.view.champion.ChampionAdapter;
 
 public class ChampionListFragment extends Fragment {
     private ChampionsList championsList;
+    private ChampionAdapter championAdapter;
 
     @Nullable
     @Override
@@ -35,8 +42,37 @@ public class ChampionListFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ChampionAdapter championAdapter = new ChampionAdapter(championsList.getData());
+        //not to have the same memory pointer in adapter
+        LinkedHashMap<String,ChampionData> champData = new LinkedHashMap<>();
+        champData.putAll(championsList.getData());
+        championAdapter = new ChampionAdapter(champData);
         recyclerView.setAdapter(championAdapter);
-        championAdapter.getChampNameSelected().subscribe(s -> Toast.makeText(getContext(), "click on " + s, Toast.LENGTH_SHORT).show());
+    }
+
+    @Subscribe
+    public void onEvent(SearchChampionEvent searchChampion) {
+        if (searchChampion.getSearch().equals(""))
+            championAdapter.changeData(championsList.getData());
+        else {
+            LinkedHashMap<String,ChampionData> temp = new LinkedHashMap<>();
+            championsList.getData().forEach((k, v) -> {
+                if (k.toLowerCase().contains(searchChampion.getSearch())) {
+                    temp.put(k,v);
+                }
+            });
+            championAdapter.changeData(temp);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }
