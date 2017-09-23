@@ -5,7 +5,6 @@ import com.juliens.lolapimvctest.model.champion.ChampionsList;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -20,12 +19,5 @@ public interface StaticDataAPI {
                                                   @Query("dataById") boolean dataById,
                                                   @Query("tags") Tags... tags);
 
-    @GET("{version}/data/{locale}/champion.json")
-    Observable<ChampionsList> getAllChampionsData(@Path("version") String locale,
-                                                  @Path("locale") String version);
 
-    @GET("{version}/data/{locale}/champion/{name}.json")
-    Observable<ChampionsList> getChampionData(@Path("version") String locale,
-                                              @Path("locale") String version,
-                                              @Path("name") String name);
 }

@@ -76,10 +76,4 @@ public class ChampionListFragment extends Fragment {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable("toto",championsList);
-    }
 }
