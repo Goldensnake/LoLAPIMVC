@@ -32,7 +32,8 @@ public class ChampionListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        championsList = this.getArguments().getParcelable(MainActivity.CHAMPIONS_LIST);
+        if(championsList==null)
+            championsList = this.getArguments().getParcelable(MainActivity.CHAMPIONS_LIST);
         return inflater.inflate(R.layout.fragment_champions_list, container, false);
     }
 
@@ -74,5 +75,11 @@ public class ChampionListFragment extends Fragment {
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("toto",championsList);
     }
 }

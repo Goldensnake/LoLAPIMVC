@@ -76,12 +76,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private void receiveChampionData(ChampionsList championsList){
         Toast.makeText(this,championsList.getData().entrySet().iterator().next().getValue().getName(),Toast.LENGTH_SHORT).show();
-        /*Bundle bundle = new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putParcelable(CHAMPION_DATA, championsList.getData().entrySet().iterator().next().getValue());
         championListFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLayout,championFragment)
-                .commit();*/
+                .addToBackStack(null)
+                .commit();
     }
 
     private void receiveError(Throwable error){
