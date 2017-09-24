@@ -2,7 +2,6 @@ package com.juliens.lolapimvctest;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +22,9 @@ import com.juliens.lolapimvctest.util.AndroidUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+/*TODO:
+- navigation view
+ */
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private final Fragment championListFragment = new ChampionListFragment();
     private final Fragment championFragment = new ChampionFragment();
@@ -35,13 +37,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
         ChampionQuery.getInstance().getAllChampion(AndroidUtil.getLocale(this))
                 .subscribe(this::receiveChampionsList, this::receiveError);
-
-        // Get the intent, verify the action and get the query
-        Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            //doMySearch(query);
-        }
     }
 
     @Override
@@ -57,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         return true;
     }
 
-    //bus event
+    //bus event reception
     @Subscribe
     public void onEvent (SelectedChampionEvent selectedChampion){
         ChampionQuery.getInstance().getChampion(AndroidUtil.getLocale(this),selectedChampion.getChampionData().getId())
@@ -72,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentLayout,championListFragment)
                 .commit();
+
     }
 
     private void receiveChampionData(ChampionsList championsList){
@@ -94,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     //search view
     @Override
     public boolean onQueryTextSubmit(String query) {
-        invalidateOptionsMenu();
+        //invalidateOptionsMenu();
         return false;
     }
 

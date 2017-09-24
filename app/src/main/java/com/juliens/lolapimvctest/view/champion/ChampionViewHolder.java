@@ -16,11 +16,11 @@ import butterknife.ButterKnife;
 
 public class ChampionViewHolder extends RecyclerView.ViewHolder{
     @BindView(R.id.text_champ_name) TextView textViewChampName;
-    @BindView(R.id.image_icon) ImageView imageViewIcon;
     @BindView(R.id.text_difficulty) TextView textViewDifficulty;
-    @BindView(R.id.text_attack) TextView textViewChampAttack;
-    @BindView(R.id.text_magic) TextView textViewChampMagic;
-    @BindView(R.id.text_defense) TextView textViewChampDefense;
+    @BindView(R.id.text_attack)     TextView textViewChampAttack;
+    @BindView(R.id.text_magic)      TextView textViewChampMagic;
+    @BindView(R.id.text_defense)    TextView textViewChampDefense;
+    @BindView(R.id.image_icon)      ImageView imageViewIcon;
 
     public ChampionViewHolder(View itemView) {
         super(itemView);
